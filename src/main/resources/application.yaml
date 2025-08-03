@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: alert-system
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      database-platform: org.hibernate.dialect.MySQLDialect
+  datasource:
+    url: jdbc:mysql://167.179.93.64:3306/Louis?useSSL=false&serverTimezone=UTC&characterEncoding=utf8
+    username: root
+    password: morris-mysql-pw
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+    baseline-version : 0
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+# 日誌配置
+logging:
+  level:
+    org.springframework: DEBUG
+    com.zaxxer.hikari: DEBUG
+
+
+
