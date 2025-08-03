@@ -21,13 +21,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/api/life-records/**", "/api/assets/**", "/api/debt-records/**").authenticated()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/swagger-ui.html", "/v3/api-docs/**").permitAll()
-                        .anyRequest().denyAll()
+                        .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
+                        .requestMatchers("/api/**").authenticated()
+                        .anyRequest().permitAll()
                 )
                 .formLogin(formLogin -> formLogin
-                        .loginPage("/login") // 自定義登入頁面（可選）
                         .permitAll()
                 );
         return http.build();
